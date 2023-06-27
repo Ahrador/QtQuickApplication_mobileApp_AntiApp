@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Header_logo_112.png</file>
+        <file>hlogo.png</file>
+        <file>settings.png</file>
+        <file>Clone Arnie_120.png</file>
+        <file>Batuman_120.png</file>
+        <file>Barkeep Jonathan_120.png</file>
+        <file>Butler Jones_120.png</file>
+        <file>Byard the Forgotten_120.png</file>
+        <file>Captn Sattson_120.png</file>
+        <file>Comrade Bir_120.png</file>
+        <file>Creepy stalker_120.png</file>
+        <file>Dva Slovo-neca_120.png</file>
+        <file>El Bandito_120.png</file>
+        <file>Francesca_120.png</file>
+        <file>German doctor_120.png</file>
+        <file>Gym trainer_120.png</file>
+        <file>Jure Muckas_120.png</file>
+        <file>Neighbour Abdul_120.png</file>
+        <file>Rosie_120.png</file>
+        <file>Zane the Liberator_120.png</file>
+        <file>arrow_down.png</file>
+    </qresource>
+</RCC>
