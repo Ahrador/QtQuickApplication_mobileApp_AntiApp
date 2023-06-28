@@ -32,6 +32,10 @@
     <None Include="main.qml">
       <Filter>Source Files</Filter>
     </None>
-
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PersonaDetailsScreen.qml">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

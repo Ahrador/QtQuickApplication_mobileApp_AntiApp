@@ -20,5 +20,6 @@
         <file>System icons/hlogo.png</file>
         <file>System icons/settings.png</file>
         <file>main.qml</file>
+        <file>System icons/left_arrow.png</file>
     </qresource>
 </RCC>

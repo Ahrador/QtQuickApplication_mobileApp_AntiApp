@@ -10,6 +10,26 @@ ApplicationWindow {
    height: 800
    title: "Mobile App"
 
+    Connections {
+        target: listView
+
+        // Handle the signal emitted when a persona slot is clicked
+        onPersonaClicked: {
+            // Navigate to the persona details page
+            var personaDetailsScreen = Qt.createComponent("PersonaDetailsScreen.qml");
+            if (personaDetailsScreen.status === Component.Ready) {
+                var personaDetailsScreenObject = personaDetailsScreen.createObject(null);
+                personaDetailsScreenObject.personaData = personaData;
+                personaDetailsScreenObject.backClicked.connect(goBack);
+            }
+        }
+    }
+
+    function goBack() {
+        // Destroy the current persona details page and navigate back to the main page
+        personaDetailsScreenObject.destroy();
+    }
+
    // Background color
    Rectangle {
       width: parent.width
@@ -75,40 +95,25 @@ ApplicationWindow {
             model: personaList.length
             spacing: 8
 
-            // Add MouseArea for scrolling
-            MouseArea {
-               anchors.fill: parent
-               propagateComposedEvents: true
-
-               onPressed: {
-                  listView.contentItem.forceActiveFocus();
-                  listView.interactive = true;
-                  listView.touchPointId = touchPoint.id;
-                  listView.touchStartY = touchPoint.y;
-                  listView.startOffset = listView.contentY;
-               }
-
-               onPositionChanged: {
-                  if (listView.interactive && listView.touchPointId === touchPoint.id) {
-                     var deltaY = touchPoint.y - listView.touchStartY;
-                     listView.contentY = listView.startOffset - deltaY;
-                  }
-               }
-
-               onReleased: {
-                  listView.interactive = false;
-               }
-
-               // Allow scrolling even when the mouse is outside the ListView
-               hoverEnabled: true
-            }
-
             delegate: Item {
                width: parent.width
                height: 70
 
-               property var personaData: personaList[index]
+                property var personaData: personaList[index]
+              
+              MouseArea {
+            anchors.fill: parent
+            onClicked: {
+            // Emit a signal with the personaData when a slot is clicked
+                clickedPersonaSignal(personaData);
+                // Handle click event to navigate to the persona details screen
+                // You can implement the navigation logic here
+                // For example, you can create a signal in your main QML file and emit it with the personaData when a slot is clicked,
+                // and then connect this signal to a function that handles the navigation to the persona details screen
+            }
+        }
 
+              // ATTRIBUTES FOR THE PERSONA SLOTS WITHIN THE LIST
                Rectangle {
                   width: parent.width
                   height: parent.height
@@ -160,6 +165,8 @@ ApplicationWindow {
          }
       }
    }
+    
+
 
    property var personaList: [{
          "name": "Clone Arnie",
@@ -198,6 +205,12 @@ ApplicationWindow {
          "language": "ENG",
          "source": "qrc:/Persona icons/Captn Sattson_120.png"
       }, {
+         "name": "Francesca",
+         // Francesca
+         "tag": "Seductive & Manipulative",
+         "language": "ENG",
+         "source": "qrc:/Persona icons/Francesca_120.png"
+      }, {
          "name": "Jure Mućkaš",
          // Jure Mućkaš
          "tag": "Šaljivđija & Filozof",
@@ -223,20 +236,43 @@ ApplicationWindow {
          "source": "qrc:/Persona icons/Gym trainer_120.png"
       }, {
          "name": "Zane the Liberator",
-         "tag": "Criminal & Mad",
+          // Barkeep Jonathan
+         "tag": "Relatable & Helpful",
          "language": "ENG",
-         "source": "qrc:/Persona icons/Zane the Liberator_120.png"
+         "source": "qrc:/Persona icons/Barkeep Jonathan_120.png"
       }, {
-         "name": "Batuman",
-         "tag": "Paranoid & Insecure",
+         "name": "Comrade Bir",
+         // Comrade Bir
+         "tag": "Talkative & Funny",
          "language": "ENG",
-         "source": "qrc:/Persona icons/Batuman_120.png"
+         "source": "qrc:/Persona icons/Comrade Bir_120.png"
       }, {
-         "name": "Zane the Liberator",
-         "tag": "Criminal & Mad",
+         "name": "Butler Jones",
+         // Butler Jones
+         "tag": "Sarcastic & Refined",
          "language": "ENG",
-         "source": "qrc:/Persona icons/Zane the Liberator_120.png"
+         "source": "qrc:/Persona icons/Butler Jones_120.png"
+      }, {
+         "name": "The German Doctor",
+         // The German Doctor
+         "tag": "Insane & Pyschopath",
+         "language": "ENG",
+         "source": "qrc:/Persona icons/German doctor_120.png"
+      }, {
+         "name": "Creepy Stalker",
+         // Creepy Stalker
+         "tag": "Unnerving & Intrusive",
+         "language": "ENG",
+         "source": "qrc:/Persona icons/Creepy stalker_120.png"
+      }, {
+         "name": "Neighbour Abdul",
+         // Neighbour Abdul
+         "tag": "Neurotic & Impatient",
+         "language": "ENG",
+         "source": "qrc:/Persona icons/Neighbour Abdul_120.png"
       }
       // Add more personas as needed
       ,]
 }
+
+ 
