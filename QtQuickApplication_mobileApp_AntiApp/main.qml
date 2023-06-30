@@ -165,9 +165,7 @@ ApplicationWindow {
          }
       }
    }
-    
-
-
+   
    property var personaList: [{
          "name": "Clone Arnie",
          // Clone Arnie
